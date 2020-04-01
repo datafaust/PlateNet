@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS plates_recorded(
      );
 
 CREATE TABLE IF NOT EXISTS plate_data(
-      plate VARCHAR(100)
+      plate VARCHAR(100),
       violation_id INT,
       time_stamp DATETIME
      );
