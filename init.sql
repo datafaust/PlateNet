@@ -2,13 +2,13 @@ CREATE DATABASE platenet;
 USE platenet;
 SET SQL_SAFE_UPDATES = 0;
 CREATE TABLE IF NOT EXISTS plates_recorded(
-     plate VARCHAR(100)
+     plate VARCHAR(100),
      time_stamp DATETIME
      );
 
 CREATE TABLE IF NOT EXISTS plate_data(
       plate VARCHAR(100)
-      violation_id INT
+      violation_id INT,
       time_stamp DATETIME
      );
 
