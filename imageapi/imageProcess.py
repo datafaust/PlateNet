@@ -1,12 +1,13 @@
+
 #car plate detection function
 import numpy as np
 import cv2
 import pytesseract
 import imutils
 
-def processPlate(my_image):
+def processPlate(plate, filename):
     #read image
-    image = cv2.imread(my_image)
+    image = cv2.imread(plate)
 
     #resize image
     image = imutils.resize(image, width=500)
@@ -36,7 +37,7 @@ def processPlate(my_image):
     cv2.drawContours(img2, cnts, -1, (0,255,0), 3)
 
     #loop over our contours to find the best possible approximate contour of number plate
-    idx=8
+    idx=filename
     for c in cnts:
         peri = cv2.arcLength(c, True)
         approx = cv2.approxPolyDP(c, 0.02 * peri, True)
@@ -47,8 +48,8 @@ def processPlate(my_image):
             # Crop those contours and store it in Cropped Images folder
             x, y, w, h = cv2.boundingRect(c) #This will find out co-ord for plate
             new_img = gray[y:y + h, x:x + w] #Create new image
-            cv2.imwrite('cropped_images/' + str(idx) + '.png', new_img) #Store new image
-            idx+=1
+            cv2.imwrite('upload/' + 'cropped_' + str(idx), new_img) #Store new image
+            #idx+=1
 
             break
 
@@ -58,17 +59,24 @@ def processPlate(my_image):
     #cv2.imshow("Final Image With Number Plate Detected", image)
     #cv2.waitKey(0)
 
-    Cropped_img_loc = 'cropped_images/8.png'
+    Cropped_img_loc = 'upload/' + 'cropped_' + str(idx)#'cropped_images/8.png'
 
     #Use tesseract to covert image into string
     text = pytesseract.image_to_string(Cropped_img_loc, lang='eng')
-    print("Number is :", text)
-
-    #print final plate
-    cv2.imshow("Cropped Image ", cv2.imread(Cropped_img_loc))
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    text = text.replace('.', '')
+    text = text.replace(' ','')
+    return text
     
 
 
-processPlate('car_images/3.jpg')
+#processPlate('car_images/3.jpg')
+
+#import cv2
+#import pytesseract
+#import imutils
+
+#def processPlate(image):
+#    img = cv2.imread(image)
+#    #use tesseract to convert image into strinf
+#    text = pytesseract.image_to_string(img, lang='eng')
+#    return text
