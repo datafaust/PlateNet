@@ -4,6 +4,7 @@ import numpy as np
 import cv2
 import pytesseract
 import imutils
+import logging
 
 def processPlate(plate, filename):
     #read image

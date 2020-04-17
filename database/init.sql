@@ -1,15 +1,60 @@
 CREATE DATABASE platenet;
 USE platenet;
 SET SQL_SAFE_UPDATES = 0;
+
+ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'password';
+flush privileges;
+
+
 CREATE TABLE IF NOT EXISTS plates_recorded(
      plate VARCHAR(100),
-     time_stamp DATETIME
+     time_stamp DATETIME,
+     lat float,
+     lon float
      );
 
-CREATE TABLE IF NOT EXISTS plate_data(
-      plate VARCHAR(100),
-      violation_id INT,
-      time_stamp DATETIME
+CREATE TABLE IF NOT EXISTS plate_data_stg (
+     plate VARCHAR(100),
+     state VARCHAR(100),
+     license_type VARCHAR(100),
+     summons_number VARCHAR(10),
+     issue_date DATE,
+     violation_time VARCHAR(10),
+     violation VARCHAR(100),
+     judgment_entry_date DATE,
+     fine_amount FLOAT,
+     penalty_amount FLOAT,
+     interest_amount FLOAT,
+     reduction_amount FLOAT,
+     payment_amount FLOAT,
+     amount_due FLOAT,
+     precinct INT(3),
+     county VARCHAR(2),
+     issuing_agency VARCHAR(100),
+     violation_status VARCHAR(100),
+     summons_image VARCHAR(2083)
+     );
+
+CREATE TABLE IF NOT EXISTS plate_data_prd (
+     unique_id VARCHAR(100) PRIMARY KEY,
+     plate VARCHAR(100),
+     state VARCHAR(100),
+     license_type VARCHAR(100),
+     summons_number VARCHAR(10),
+     violation_datetime DATETIME,
+     violation VARCHAR(100),
+     judgment_entry_date DATE,
+     fine_amount FLOAT,
+     penalty_amount FLOAT,
+     interest_amount FLOAT,
+     reduction_amount FLOAT,
+     payment_amount FLOAT,
+     amount_due FLOAT,
+     precinct INT(3),
+     county VARCHAR(2),
+     issuing_agency VARCHAR(100),
+     violation_status VARCHAR(100),
+     summons_image VARCHAR(2083)
      );
 
 CREATE TABLE IF NOT EXISTS errors (
@@ -25,13 +70,3 @@ CREATE TABLE IF NOT EXISTS errors (
      PRIMARY KEY (id)
 );
 
-INSERT INTO platenet.plate_data
-    (plate,violation_id,time_stamp)
-VALUES
-    ('MH01AV8866',1,'2019-01-01 12:01:23'),
-    ('MH01AV8866',2,'2019-07-01 18:07:10'),
-    ('BALENO',1,'2019-02-01 15:14:10'),
-    ('BALENO',2,'2019-03-01 04:04:04'),
-    ('HR26BP3543',1,'2019-12-01 16:07:10'),
-    ('HR26BP3543',2,'2019-10-01 16:07:10'),
-    ('HR26BP3543',3,'2019-06-01 16:07:10')

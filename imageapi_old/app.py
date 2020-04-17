@@ -5,13 +5,16 @@ from flask_cors import CORS, cross_origin
 import logging
 from flask_restful import Resource, Api
 import imageProcess
+import subprocess
+from subprocess import Popen
+import string
 
 #logging information
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('LOG INFO: ')
 
 #file types
-UPLOAD_FOLDER = '/U/Users/mac/Documents/git_projects/PlateNet/imageapi/upload'
+UPLOAD_FOLDER = '/upload'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 #app prep
@@ -38,7 +41,9 @@ def fileUpload():
         file.save(destination)
         session['uploadFilePath']=destination
         logger.info(destination)
+        logger.info(filename)
         text = imageProcess.processPlate(destination, filename)
+        logger.info(text)
         data = {'message': 'Successfully loaded', 'text': text} #response="Whatever you wish too return"
         return make_response(jsonify(data), 201)
 
