@@ -11,10 +11,11 @@ services:
       - 3001:3001
       
   mysqlplate:
-    image: mysql
     restart: unless-stopped
     container_name: mysql
     build: ./database/
+    volume:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     ports:
       - 3306:3306
 
