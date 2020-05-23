@@ -10,7 +10,7 @@ services:
     ports:
       - 3001:3001
       
-  mysqlplate:
+  db:
     image: mysql
     restart: unless-stopped
     container_name: mysql
@@ -19,10 +19,9 @@ services:
       - 3306:3306
 
   openalpr:
-    image: openalpr
+    image: fauslyfox110/openalpr-platenet:firsttry
     restart: unless-stopped
     container_name: openalpr
-    build: ./openalpr/
     ports:
       - 5000:5000
 
