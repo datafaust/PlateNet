@@ -26,6 +26,23 @@ const pool = mysql.createPool({
   });
 
 //pull records
+app.get('/test',  cors(), function(req,res){
+    var plate = req.params.plate;
+    console.log(plate)
+    var sql = "SELECT * FROM platenet.plate_data_prd LIMIT 5";
+    pool.query(sql, plate, function(err, results) {
+        if(err) {
+            return res.send(err)
+        } else {
+            console.log(results)
+            return res.json({
+                data: results
+            })
+        }
+    });
+});
+
+//pull records
 app.get('/record/:plate',  cors(), function(req,res){
     var plate = req.params.plate;
     console.log(plate)
