@@ -31,9 +31,9 @@ services:
     image: abdulsalamdocker/caddy:1.0.3-no-stats
     restart: unless-stopped
     env_file:
-      - ./env/caddy.env
+      - ./caddyrp/env/caddy.env
     volumes:
-      - ./Caddyfile:/etc/Caddyfile:ro
+      - ./caddyrp/Caddyfile:/etc/Caddyfile:ro
       - $HOME/.caddy:/root/.caddy
     ports:
       - 80:80
