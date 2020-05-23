@@ -36,3 +36,16 @@ my_data = pd.read_csv('myPlate.csv')
 my_data = prepData(my_data)
 print(my_data)
 upload(my_data, 'plate_data_stg')
+
+
+
+
+#my_data.columns = my_data.columns.str.replace(' ', '_')
+#my_data.columns = map(str.lower, my_data.columns)
+#my_data.judgment_entry_date.fillna('01/07/1971', inplace=True)
+#my_data.issue_date = pd.to_datetime(my_data.issue_date,errors='coerce').dt.normalize()
+#my_data.judgment_entry_date = pd.to_datetime(my_data.judgment_entry_date,errors='coerce').dt.normalize()
+#my_data.summons_image = my_data.summons_image.str.replace('View Summons','')
+#my_data.summons_image = my_data.summons_image.str.replace('(', '')
+#my_data.summons_image = my_data.summons_image.str.replace(')', '')
+#my_data.summons_image = my_data.summons_image.str.replace(' ', '')
