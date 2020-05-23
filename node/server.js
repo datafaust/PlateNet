@@ -13,7 +13,7 @@ const mysql = require('mysql');
 
 const app = express();
 // call cors
-//app.use(cors()); //attempting disable for caddy
+//app.use(cors()); //attempting disable for caddy 
 
 
 //connection for database
