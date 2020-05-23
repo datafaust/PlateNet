@@ -12,11 +12,10 @@ services:
       
   mysqlplate:
     image: mysql
+    command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     container_name: mysql
     build: ./database/
-    volumes:
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     ports:
       - 3306:3306
 
