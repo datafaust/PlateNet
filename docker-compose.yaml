@@ -10,9 +10,7 @@ services:
     ports:
       - 3001:3001
     networks:
-      default:
-        external:
-          name: my-net
+      - my-net
 
   testapi:
     container_name: testapi
@@ -20,9 +18,7 @@ services:
     ports:
       - 4000:4000
     networks:
-      default:
-        external:
-          name: my-net
+      - my-net
       
   db:
     image: mysql
@@ -34,9 +30,7 @@ services:
     ports:
       - 3306:3306
     networks:
-      default:
-        external:
-          name: my-net
+      - my-net
 
   openalpr:
     image: fauslyfox110/openalpr-platenet:firsttry
@@ -45,9 +39,7 @@ services:
     ports:
       - 5000:5000
     networks:
-      default:
-        external:
-          name: my-net
+      - my-net
 
   caddy:
     container_name: caddy
@@ -63,8 +55,9 @@ services:
       - 443:443
       - 2015:2015
     networks:
-      default:
-        external:
-          name: my-net
+      - my-net
 
   
+  networks: 
+    my_net:
+      external: true
