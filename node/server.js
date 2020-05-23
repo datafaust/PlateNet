@@ -13,7 +13,7 @@ const mysql = require('mysql');
 
 const app = express();
 // call cors
-app.use(cors()); //attempting disable for caddy 
+//app.use(cors()); //attempting disable for caddy 
 
 
 //connection for database
@@ -32,7 +32,7 @@ app.get('/', (req, res) => res.send('wassup!'))
 app.get('/hello', (req, res) => res.send('wassup bro!'))
 
 //test records from myql
-app.get('/test',  cors(), function(req,res){
+app.get('/test',  function(req,res){
     var plate = req.params.plate;
     console.log(plate)
     console.log('attempting connection')
