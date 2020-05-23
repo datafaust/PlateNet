@@ -17,10 +17,9 @@ services:
       - 4000:4000
       
   db:
-    image: mysqlplate
+    image: mysql
     restart: unless-stopped
     container_name: mysql
-    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: password
     build: ./database/
