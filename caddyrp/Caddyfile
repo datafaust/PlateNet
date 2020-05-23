@@ -31,7 +31,7 @@ platesql.metis-data.site {
         # Enable cross-site filter (XSS) and tell browser to block detected attacks
         X-XSS-Protection "1; mode=block"
     }
-    proxy / sqlnodeplate:5000 {
+    proxy / sqlnodeplate:3001 {
         websocket
         transparent
     }
