@@ -35,7 +35,7 @@ app.get('/hello', (req, res) => res.send('wassup bro!'))
 app.get('/test',  cors(), function(req,res){
     var plate = req.params.plate;
     console.log(plate)
-    var sql = "SELECT * FROM platenet.plate_data_prd LIMIT 5";
+    var sql = "SELECT * FROM platenet.plate_data_stg LIMIT 5";
     pool.query(sql, plate, function(err, results) {
         if(err) {
             return res.send(err)
