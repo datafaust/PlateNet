@@ -34,4 +34,5 @@ def upload(df,table_name):
 
 my_data = pd.read_csv('myPlate.csv')
 my_data = prepData(my_data)
+print(my_data)
 upload(my_data, 'plate_data_stg')
