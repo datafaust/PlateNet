@@ -35,7 +35,7 @@ services:
     env_file:
       - ./caddyrp/env/caddy.env
     volumes:
-      - ./caddyrp/Caddyfile:/home/fausto/Documents/Caddyfile:ro
+      - ./caddyrp/Caddyfile:/etc/Caddyfile:ro
       - $HOME/.caddy:/root/.caddy
     ports:
       - 80:80
