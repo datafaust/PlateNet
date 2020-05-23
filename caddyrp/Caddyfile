@@ -1,0 +1,60 @@
+ metis-data.site www.metis-data.site {
+    gzip
+    realip cloudflare
+    tls faustolopez110@gmail.com
+    tls {
+        dns cloudflare
+    }
+    header / {
+        # Enable HTTP Strict Transport Security (HSTS)
+        Strict-Transport-Security "max-age=31536000;"
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+        # Disallow the site to be rendered within a frame (clickjacking protection)
+        X-Frame-Options "DENY"
+    }
+    redir https://faustolopez.com
+}
+
+platesql.metis-data.site {
+    gzip
+    realip cloudflare
+    tls faustolopez110@gmail.com
+    tls {
+        dns cloudflare
+    }
+    header / {
+        # Enable HTTP Strict Transport Security (HSTS)
+        Strict-Transport-Security "max-age=31536000;"
+        # Prevents embedding of instance within an iframe
+        X-Frame-Options: SAMEORIGIN
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+    }
+    proxy / sqlnodeplate:5000 {
+        websocket
+        transparent
+    }
+}
+
+plateimage.metis-data.site {
+    gzip
+    realip cloudflare
+    tls faustolopez110@gmail.com
+    tls {
+        dns cloudflare
+    }
+    header / {
+        # Enable HTTP Strict Transport Security (HSTS)
+        Strict-Transport-Security "max-age=31536000;"
+        # Prevents embedding of instance within an iframe
+        X-Frame-Options: SAMEORIGIN
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+    }
+    proxy / openalpr:5000 {
+        websocket
+        transparent
+    }
+}
+

@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+
+  sqlnodeplate:
+    image: sqlnodeplate
+    restart: unless-stopped
+    container_name: sqlnodeplate
+    build: ./node/
+    ports:
+      - 3001:3001
+      
+  mysqlplate:
+    image: mysql
+    restart: unless-stopped
+    container_name: mysql
+    build: ./database/
+    ports:
+      - 3306:3306
+
+  openalpr:
+    image: openalpr
+    restart: unless-stopped
+    container_name: openalpr
+    build: ./openalpr/
+    ports:
+      - 5000:5000
+
+  caddy:
+    container_name: caddy
+    image: abdulsalamdocker/caddy:1.0.3-no-stats
+    restart: unless-stopped
+    env_file:
+      - ./env/caddy.env
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile:ro
+      - $HOME/.caddy:/root/.caddy
+    ports:
+      - 80:80
+      - 443:443
+      - 2015:2015
+
+  
