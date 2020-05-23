@@ -11,6 +11,7 @@ services:
       - 3001:3001
       
   mysqlplate:
+    image: mysql:latest
     restart: unless-stopped
     container_name: mysql
     build: ./database/
