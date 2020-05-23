@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
     container_name: mysql
     build: ./database/
-    volume:
+    volumes:
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     ports:
       - 3306:3306
