@@ -25,7 +25,13 @@ const pool = mysql.createPool({
     insecureAuth : true
   });
 
-//pull records
+//test generic serve access
+app.get('/', (req, res) => res.send('wassup!'))
+
+//test generic server endpoint access
+app.get('/hello', (req, res) => res.send('wassup bro!'))
+
+//test records from myql
 app.get('/test',  cors(), function(req,res){
     var plate = req.params.plate;
     console.log(plate)
