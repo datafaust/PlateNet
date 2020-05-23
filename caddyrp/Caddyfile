@@ -58,3 +58,23 @@ plateimage.metis-data.site {
     }
 }
 
+ta.metis-data.site {
+    gzip
+    realip cloudflare
+    tls faustolopez110@gmail.com
+    tls {
+        dns cloudflare
+    }
+    header / {
+        # Enable HTTP Strict Transport Security (HSTS)
+        Strict-Transport-Security "max-age=31536000;"
+        # Prevents embedding of instance within an iframe
+        X-Frame-Options: SAMEORIGIN
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+    }
+    proxy / testapi:4000 {
+        websocket
+        transparent
+    }
+}

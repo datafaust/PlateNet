@@ -9,6 +9,12 @@ services:
     build: ./node/
     ports:
       - 3001:3001
+
+  testapi:
+    container_name: testapi
+    build: ./nodetest/
+    ports:
+      - 4000:4000
       
   db:
     image: mysql
