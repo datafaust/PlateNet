@@ -63,7 +63,7 @@ app.get('/test',  function(req,res){
 });
 
 //pull records
-app.get('/record/:plate',  cors(), function(req,res){
+app.get('/record/:plate', function(req,res){
     var plate = req.params.plate;
     console.log(plate)
     var sql = "SELECT * FROM platenet.plate_data_prd WHERE plate like '"+plate+"'";
