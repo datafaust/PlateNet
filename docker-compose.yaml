@@ -20,7 +20,7 @@ services:
     networks:
       - my-net
       
-  db:
+  mysql:
     image: mysql
     restart: unless-stopped
     container_name: mysql
