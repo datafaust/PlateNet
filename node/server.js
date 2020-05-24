@@ -17,7 +17,7 @@ app.use(cors()); //attempting disable for caddy
 
 //original connection test
 var con = mysql.createConnection({
-    host: "mysql",
+    host: "192.168.1.173",
     user: "root",
     password: "password",
     database : "platenet",
