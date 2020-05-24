@@ -11,14 +11,6 @@ services:
       - 3001:3001
     networks:
       - my-net
-
-  testapi:
-    container_name: testapi
-    build: ./nodetest/
-    ports:
-      - 4000:4000
-    networks:
-      - my-net
       
   mysql:
     image: mysql
