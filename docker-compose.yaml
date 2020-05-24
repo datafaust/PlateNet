@@ -56,3 +56,6 @@ services:
       - 2015:2015
     networks:
       - my-net
+      
+networks: 
+  my-net:
