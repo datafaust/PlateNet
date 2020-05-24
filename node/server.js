@@ -15,6 +15,19 @@ const app = express();
 // call cors
 app.use(cors()); //attempting disable for caddy 
 
+//original connection test
+var con = mysql.createConnection({
+    host: "mysql",
+    user: "root",
+    password: "password",
+    database : "platenet",
+    insecureAuth : true
+  });
+
+  con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  });
 
 //connection for database
 const pool = mysql.createPool({
