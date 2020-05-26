@@ -25,7 +25,7 @@ services:
       - my-net
 
   openalpr:
-    image: fauslyfox110/openalpr-platenet:firsttry
+    image: fauslyfox110/openalpr-platenet:nohttps
     restart: unless-stopped
     container_name: openalpr
     ports:
