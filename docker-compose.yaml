@@ -9,8 +9,6 @@ services:
     build: ./node/
     ports:
       - 3001:3001
-    networks:
-      - my-net
       
   mysql:
     image: mysql
@@ -21,8 +19,6 @@ services:
     build: ./database/
     ports:
       - 3306:3306
-    networks:
-      - my-net
 
   openalpr:
     image: fauslyfox110/openalpr-platenet:nohttps
@@ -30,24 +26,8 @@ services:
     container_name: openalpr
     ports:
       - 5000:5000
-    networks:
-      - my-net
 
-  caddy:
-    container_name: caddy
-    image: abdulsalamdocker/caddy:1.0.3-no-stats
-    restart: unless-stopped
-    env_file:
-      - ./caddyrp/env/caddy.env
-    volumes:
-      - ./caddyrp/Caddyfile:/etc/Caddyfile:ro
-      - $HOME/.caddy:/root/.caddy
-    ports:
-      - 80:80
-      - 443:443
-      - 2015:2015
-    networks:
-      - my-net
-      
-networks: 
-  my-net:
+networks:
+  default:
+    external:
+      name: my-net
